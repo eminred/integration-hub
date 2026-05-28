@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integration Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ─── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" rx="5" fill="#4361ee"/>
+          <path d="M8 12h8M12 8v8" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">IntegrationHub</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-page="integrations" href="#">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <rect x="2" y="3" width="9" height="9" rx="1.5"/><rect x="13" y="3" width="9" height="9" rx="1.5"/>
+          <rect x="2" y="13" width="9" height="9" rx="1.5"/><rect x="13" y="13" width="9" height="9" rx="1.5"/>
+        </svg>
+        <span>Integrations</span>
+      </a>
+      <a class="nav-item" data-page="leads" href="#">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Leads</span>
+      </a>
+      <a class="nav-item" data-page="logs" href="#">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        <span>Logs</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">E</div>
+        <div class="user-info">
+          <div class="user-name">Emin S.</div>
+          <div class="user-role">Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── Main ─────────────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- ══ Integrations Page ═════════════════════════════════ -->
+    <div id="page-integrations" class="page active">
+      <div class="page-header">
+        <div>
+          <h1>Integrations</h1>
+          <p class="page-subtitle">Connect your CRM to automate contact sync and outreach</p>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="hubspot">
+          <span class="tab-dot" style="background:#FF7A59"></span>HubSpot
+        </button>
+        <button class="tab-btn" data-tab="salesforce">
+          <span class="tab-dot" style="background:#00A1E0"></span>Salesforce
+        </button>
+        <button class="tab-btn" data-tab="pipedrive">
+          <span class="tab-dot" style="background:#d2382c"></span>Pipedrive
+        </button>
+        <button class="tab-btn" data-tab="zoho">
+          <span class="tab-dot" style="background:#e42527"></span>Zoho CRM
+        </button>
+      </div>
+
+      <!-- HubSpot Tab -->
+      <div class="tab-content active" id="tab-hubspot">
+        <div class="integration-card" id="hubspot-card">
+          <div class="card-header">
+            <div class="crm-logo" style="background:#FF7A59">
+              <!-- Simplified HubSpot sprocket -->
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <circle cx="13" cy="13" r="4" fill="white"/>
+                <circle cx="13" cy="3.5" r="2.5" fill="white"/>
+                <circle cx="22.5" cy="13" r="2.5" fill="white"/>
+                <circle cx="13" cy="22.5" r="2.5" fill="white"/>
+                <circle cx="3.5" cy="13" r="2.5" fill="white"/>
+                <line x1="13" y1="6" x2="13" y2="9" stroke="white" stroke-width="1.5"/>
+                <line x1="17" y1="13" x2="20" y2="13" stroke="white" stroke-width="1.5"/>
+                <line x1="13" y1="17" x2="13" y2="20" stroke="white" stroke-width="1.5"/>
+                <line x1="6" y1="13" x2="9" y2="13" stroke="white" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="card-title-group">
+              <h2 class="card-title">HubSpot</h2>
+              <span class="card-category">CRM</span>
+            </div>
+            <div class="card-status" id="hubspot-status">
+              <span class="status-dot idle" id="hubspot-status-dot"></span>
+              <span class="status-text" id="hubspot-status-text">Not connected</span>
+            </div>
+          </div>
+
+          <p class="card-description">
+            Sync contacts, deals, and companies directly from HubSpot. Add leads to sequences
+            and track engagement automatically through the Albato integration layer.
+          </p>
+
+          <!-- Initial action -->
+          <div id="hubspot-actions">
+            <button class="btn btn-primary" id="btn-add-connection" onclick="startConnection()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Add a connection
+            </button>
+          </div>
+
+          <!-- Connection flow (hidden until API call succeeds) -->
+          <div id="hubspot-flow" class="connection-flow" style="display:none">
+
+            <div class="flow-step">
+              <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">Authorize in HubSpot</div>
+              </div>
+              <p class="step-desc">Open the link below and authorize the connection in your HubSpot account:</p>
+              <div class="connect-link-box">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4361ee" stroke-width="2" stroke-linecap="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                <a id="connect-link" href="#" target="_blank" class="connect-link">—</a>
+                <button class="btn-copy" id="btn-copy" onclick="copyLink()" title="Copy link">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  Copy
+                </button>
+              </div>
+            </div>
+
+            <div class="flow-step" id="flow-step-2">
+              <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">Confirm the connection</div>
+              </div>
+              <p class="step-desc">After you've granted access in HubSpot, click below to verify:</p>
+              <button class="btn btn-success" id="btn-ready" onclick="confirmReady()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Connection ready
+              </button>
+              <div id="status-checking" class="checking-row" style="display:none">
+                <div class="spinner"></div>
+                <span>Verifying connection…</span>
+              </div>
+              <div id="status-success" class="success-row" style="display:none">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                HubSpot connected successfully!
+              </div>
+              <div id="status-error" class="error-row" style="display:none">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <span id="status-error-text">Verification timed out. Please try again.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Salesforce Tab (placeholder) -->
+      <div class="tab-content" id="tab-salesforce">
+        <div class="integration-card">
+          <div class="card-header">
+            <div class="crm-logo" style="background:#00A1E0;font-weight:700;font-size:15px;color:white;">SF</div>
+            <div class="card-title-group">
+              <h2 class="card-title">Salesforce</h2>
+              <span class="card-category">CRM</span>
+            </div>
+            <div class="card-status">
+              <span class="status-dot idle"></span>
+              <span class="status-text">Not connected</span>
+            </div>
+          </div>
+          <p class="card-description">Connect Salesforce to sync leads, contacts, and opportunities into your outreach workflows automatically.</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button class="btn btn-primary" disabled>Add a connection</button>
+            <span class="coming-soon-badge">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipedrive Tab (placeholder) -->
+      <div class="tab-content" id="tab-pipedrive">
+        <div class="integration-card">
+          <div class="card-header">
+            <div class="crm-logo" style="background:#d2382c;font-weight:700;font-size:15px;color:white;">PD</div>
+            <div class="card-title-group">
+              <h2 class="card-title">Pipedrive</h2>
+              <span class="card-category">CRM</span>
+            </div>
+            <div class="card-status">
+              <span class="status-dot idle"></span>
+              <span class="status-text">Not connected</span>
+            </div>
+          </div>
+          <p class="card-description">Import deals and contacts from Pipedrive to power your sales outreach with real-time CRM data.</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button class="btn btn-primary" disabled>Add a connection</button>
+            <span class="coming-soon-badge">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zoho Tab (placeholder) -->
+      <div class="tab-content" id="tab-zoho">
+        <div class="integration-card">
+          <div class="card-header">
+            <div class="crm-logo" style="background:#e42527;font-weight:700;font-size:15px;color:white;">ZO</div>
+            <div class="card-title-group">
+              <h2 class="card-title">Zoho CRM</h2>
+              <span class="card-category">CRM</span>
+            </div>
+            <div class="card-status">
+              <span class="status-dot idle"></span>
+              <span class="status-text">Not connected</span>
+            </div>
+          </div>
+          <p class="card-description">Link Zoho CRM to automatically pull in contacts and leads for personalised outreach campaigns.</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button class="btn btn-primary" disabled>Add a connection</button>
+            <span class="coming-soon-badge">Coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ Leads Page ════════════════════════════════════════ -->
+    <div id="page-leads" class="page">
+      <div class="page-header">
+        <div>
+          <h1>Leads</h1>
+          <p class="page-subtitle">Add contacts to send to HubSpot</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary" onclick="openModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add lead
+          </button>
+          <button class="btn btn-primary" id="btn-send-leads" onclick="sendLeads()" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Send to HubSpot
+          </button>
+        </div>
+      </div>
+
+      <div id="leads-warning" class="info-banner" style="display:none">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Connect HubSpot on the Integrations page first to enable sending leads.
+      </div>
+
+      <div class="table-wrap">
+        <table class="leads-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th class="th-actions"></th>
+            </tr>
+          </thead>
+          <tbody id="leads-body">
+            <tr id="leads-empty">
+              <td colspan="4">
+                <div class="table-empty">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                  <p>No leads yet — click <strong>Add lead</strong> to get started.</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ Logs Page ═════════════════════════════════════════ -->
+    <div id="page-logs" class="page">
+      <div class="page-header">
+        <div>
+          <h1>Logs</h1>
+          <p class="page-subtitle">Real-time API call history</p>
+        </div>
+        <button class="btn btn-secondary" onclick="clearLogs()">Clear logs</button>
+      </div>
+
+      <!-- Token bar -->
+      <div class="token-bar">
+        <div class="token-bar-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Bearer Token
+        </div>
+        <div class="token-input-group">
+          <input type="password" id="api-token" class="token-input" placeholder="Paste your API token here…" oninput="updateToken(this.value)" />
+          <button class="btn btn-secondary" id="btn-toggle-token" onclick="toggleToken()">Show</button>
+        </div>
+        <p class="token-hint">Used as <code>Authorization: Bearer …</code> on uapi.albato.com requests.</p>
+      </div>
+
+      <!-- Log entries -->
+      <div class="logs-wrap">
+        <div id="logs-empty-state" class="logs-empty">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <p>No API calls yet — start by adding a HubSpot connection.</p>
+        </div>
+        <div id="logs-list"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ─── Add Lead Modal ──────────────────────────────────── -->
+<div class="modal-overlay" id="modal-overlay" style="display:none" onclick="overlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Add Lead</h2>
+      <button class="btn-icon" onclick="closeModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <form class="modal-body" onsubmit="addLead(event)">
+      <div class="form-group">
+        <label for="f-first">First Name</label>
+        <input type="text" id="f-first" placeholder="John" required autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label for="f-last">Last Name</label>
+        <input type="text" id="f-last" placeholder="Doe" required autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label for="f-email">Email</label>
+        <input type="email" id="f-email" placeholder="john@example.com" required autocomplete="off" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Lead</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ─── Toast ───────────────────────────────────────────── -->
+<div id="toast" class="toast" style="display:none"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
