@@ -42,8 +42,9 @@ function switchTab(tab) {
 ============================================================ */
 async function startConnection() {
   if (!state.apiToken) {
-    toast('Paste your Bearer token above before connecting.', 'error');
-    document.getElementById('hs-token').focus();
+    toast('Set your Bearer token on the Logs page first.', 'error');
+    navigate('logs');
+    setTimeout(() => document.getElementById('api-token').focus(), 100);
     return;
   }
 
@@ -403,15 +404,6 @@ function statusClass(s) {
 ============================================================ */
 function updateToken(val) { state.apiToken = val; }
 
-// Syncs both the card input and the logs-page input
-function updateTokenAll(val) {
-  state.apiToken = val;
-  const logsInput = document.getElementById('api-token');
-  if (logsInput && logsInput.value !== val) logsInput.value = val;
-  const cardInput = document.getElementById('hs-token');
-  if (cardInput && cardInput.value !== val) cardInput.value = val;
-}
-
 function toggleToken() {
   const input = document.getElementById('api-token');
   const btn   = document.getElementById('btn-toggle-token');
@@ -420,13 +412,6 @@ function toggleToken() {
   btn.textContent = show ? 'Hide' : 'Show';
 }
 
-function toggleHsToken() {
-  const input = document.getElementById('hs-token');
-  const btn   = document.getElementById('btn-toggle-hs-token');
-  const show  = input.type === 'password';
-  input.type  = show ? 'text' : 'password';
-  btn.textContent = show ? 'Hide' : 'Show';
-}
 
 function bearerHeaders() {
   return state.apiToken ? { 'Authorization': 'Bearer ' + state.apiToken } : {};
