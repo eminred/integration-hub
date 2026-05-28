@@ -41,6 +41,12 @@ function switchTab(tab) {
    HUBSPOT — START CONNECTION
 ============================================================ */
 async function startConnection() {
+  if (!state.apiToken) {
+    toast('Paste your Bearer token above before connecting.', 'error');
+    document.getElementById('hs-token').focus();
+    return;
+  }
+
   const btn = document.getElementById('btn-add-connection');
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner-sm"></div> Connecting…';
@@ -65,7 +71,7 @@ async function startConnection() {
   try {
     const res = await fetch('/api/grant-access', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...bearerHeaders() },
       body: JSON.stringify(body)
     });
     const data = await res.json();
@@ -131,7 +137,7 @@ async function pollStatus(url, id, attempt) {
   const MAX = 20;
 
   try {
-    const res = await fetch('/api/grant-access-status?id=' + id);
+    const res = await fetch('/api/grant-access-status?id=' + id, { headers: bearerHeaders() });
     const data = await res.json();
     addLog({ type: 'res', method: 'GET', url, status: res.status, body: data, note: 'Poll #' + (attempt + 1) });
 
@@ -397,9 +403,26 @@ function statusClass(s) {
 ============================================================ */
 function updateToken(val) { state.apiToken = val; }
 
+// Syncs both the card input and the logs-page input
+function updateTokenAll(val) {
+  state.apiToken = val;
+  const logsInput = document.getElementById('api-token');
+  if (logsInput && logsInput.value !== val) logsInput.value = val;
+  const cardInput = document.getElementById('hs-token');
+  if (cardInput && cardInput.value !== val) cardInput.value = val;
+}
+
 function toggleToken() {
   const input = document.getElementById('api-token');
   const btn   = document.getElementById('btn-toggle-token');
+  const show  = input.type === 'password';
+  input.type  = show ? 'text' : 'password';
+  btn.textContent = show ? 'Hide' : 'Show';
+}
+
+function toggleHsToken() {
+  const input = document.getElementById('hs-token');
+  const btn   = document.getElementById('btn-toggle-hs-token');
   const show  = input.type === 'password';
   input.type  = show ? 'text' : 'password';
   btn.textContent = show ? 'Hide' : 'Show';

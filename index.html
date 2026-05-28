@@ -119,6 +119,22 @@
             and track engagement automatically through the Albato integration layer.
           </p>
 
+          <!-- Token input (required before connecting) -->
+          <div class="card-token-row">
+            <label class="card-token-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              API Token
+            </label>
+            <div class="card-token-input-group">
+              <input type="password" id="hs-token" class="card-token-input"
+                placeholder="Paste your Bearer token…"
+                oninput="updateTokenAll(this.value)" />
+              <button class="btn btn-secondary btn-sm" id="btn-toggle-hs-token" onclick="toggleHsToken()">Show</button>
+            </div>
+          </div>
+
           <!-- Initial action -->
           <div id="hubspot-actions">
             <button class="btn btn-primary" id="btn-add-connection" onclick="startConnection()">
@@ -335,7 +351,7 @@
           Bearer Token
         </div>
         <div class="token-input-group">
-          <input type="password" id="api-token" class="token-input" placeholder="Paste your API token here…" oninput="updateToken(this.value)" />
+          <input type="password" id="api-token" class="token-input" placeholder="Paste your API token here…" oninput="updateTokenAll(this.value)" />
           <button class="btn btn-secondary" id="btn-toggle-token" onclick="toggleToken()">Show</button>
         </div>
         <p class="token-hint">Used as <code>Authorization: Bearer …</code> on uapi.albato.com requests.</p>

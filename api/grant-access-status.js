@@ -6,8 +6,12 @@ export default async function handler(req, res) {
   const { id } = req.query;
   if (!id) return res.status(400).json({ error: 'Missing id parameter' });
 
+  const authHeader = req.headers['authorization'] || '';
+
   try {
-    const upstream = await fetch(`https://api.albato.com/credentials/grant-access-sharing/${id}`);
+    const upstream = await fetch(`https://api.albato.com/credentials/grant-access-sharing/${id}`, {
+      headers: authHeader ? { Authorization: authHeader } : {}
+    });
     const data = await upstream.json();
     res.status(upstream.status).json(data);
   } catch (err) {
