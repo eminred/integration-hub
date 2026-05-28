@@ -79,7 +79,7 @@
           <span class="tab-dot" style="background:#00A1E0"></span>Salesforce
         </button>
         <button class="tab-btn" data-tab="pipedrive">
-          <span class="tab-dot" style="background:#d2382c"></span>Pipedrive
+          <span class="tab-dot" style="background:#37C97C"></span>Pipedrive
         </button>
         <button class="tab-btn" data-tab="zoho">
           <span class="tab-dot" style="background:#e42527"></span>Zoho CRM
@@ -90,8 +90,15 @@
       <div class="tab-content active" id="tab-hubspot">
         <div class="integration-card" id="hubspot-card">
           <div class="card-header">
-            <div class="crm-logo">
-              <img src="https://logo.clearbit.com/hubspot.com" width="32" height="32" alt="HubSpot" onerror="this.style.display='none'" />
+            <!-- HubSpot: sprocket — central circle + 4 pill arms -->
+            <div class="crm-logo" style="background:#FF7A59">
+              <svg width="27" height="27" viewBox="0 0 27 27" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="13.5" cy="13.5" r="4.8"/>
+                <rect x="11.5" y="0.5" width="4" height="8.5" rx="2"/>
+                <rect x="18" y="11.5" width="8.5" height="4" rx="2"/>
+                <rect x="11.5" y="18" width="4" height="8.5" rx="2"/>
+                <rect x="0.5" y="11.5" width="8.5" height="4" rx="2"/>
+              </svg>
             </div>
             <div class="card-title-group">
               <h2 class="card-title">HubSpot</h2>
@@ -183,8 +190,14 @@
       <div class="tab-content" id="tab-salesforce">
         <div class="integration-card">
           <div class="card-header">
-            <div class="crm-logo">
-              <img src="https://logo.clearbit.com/salesforce.com" width="32" height="32" alt="Salesforce" onerror="this.style.display='none'" />
+            <!-- Salesforce: classic cloud shape from overlapping circles + base rect -->
+            <div class="crm-logo" style="background:#00A1E0">
+              <svg width="30" height="22" viewBox="0 0 30 22" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5"  cy="13" r="5.5"/>
+                <circle cx="15"   cy="8.5" r="7"/>
+                <circle cx="22.5" cy="13" r="5.5"/>
+                <rect x="2" y="13" width="26" height="8" rx="4"/>
+              </svg>
             </div>
             <div class="card-title-group">
               <h2 class="card-title">Salesforce</h2>
@@ -207,8 +220,12 @@
       <div class="tab-content" id="tab-pipedrive">
         <div class="integration-card">
           <div class="card-header">
-            <div class="crm-logo">
-              <img src="https://logo.clearbit.com/pipedrive.com" width="32" height="32" alt="Pipedrive" onerror="this.style.display='none'" />
+            <!-- Pipedrive: location-pin (pipeline → CRM) in brand green on dark navy -->
+            <div class="crm-logo" style="background:#1F2D3D">
+              <svg width="22" height="27" viewBox="0 0 22 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1C6.31 1 2.5 4.81 2.5 9.5C2.5 15.5 11 26 11 26C11 26 19.5 15.5 19.5 9.5C19.5 4.81 15.69 1 11 1Z" fill="#37C97C"/>
+                <circle cx="11" cy="9.5" r="3.2" fill="#1F2D3D"/>
+              </svg>
             </div>
             <div class="card-title-group">
               <h2 class="card-title">Pipedrive</h2>
@@ -231,8 +248,11 @@
       <div class="tab-content" id="tab-zoho">
         <div class="integration-card">
           <div class="card-header">
-            <div class="crm-logo">
-              <img src="https://logo.clearbit.com/zoho.com" width="32" height="32" alt="Zoho CRM" onerror="this.style.display='none'" />
+            <!-- Zoho: bold Z stroke on red -->
+            <div class="crm-logo" style="background:#E42527">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="5,5 21,5 5,21 21,21"/>
+              </svg>
             </div>
             <div class="card-title-group">
               <h2 class="card-title">Zoho CRM</h2>
